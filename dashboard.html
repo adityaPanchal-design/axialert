@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Chart.js library -->
+    <style>
+        /* Set the background color and layout */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff; /* Soft light gray */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100vh; /* Full viewport height */
+            color: #000000;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: #ffffff;
+            color: rgb(0, 0, 0);
+            width: 100%;
+            border-color: #000000;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        h2 {
+            text-align: center;
+            color: #000000;
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            max-width: 1200px; /* Max width for the content */
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .chartContainer {
+            display: none; /* Initially hide the chart */
+            margin-top: 20px;
+            opacity: 0; /* Make it invisible initially */
+            transform: scale(0.8); /* Start with a smaller scale */
+            transition: transform 1s ease, opacity 1s ease; /* Transition for scaling and opacity */
+        }
+
+        .chartContainer.show {
+            display: block;
+            animation: fadeInUp 1.5s forwards, scaleDown 1.5s forwards; /* Fade and scale down animation */
+        }
+
+        /* Keyframe for fading and sliding up */
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(50px); /* Start from below */
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0); /* End at the normal position */
+            }
+        }
+
+        /* Keyframe for shrinking the graph */
+        @keyframes scaleDown {
+            0% {
+                transform: scale(1);
+            }
+            100% {
+                transform: scale(0.8); /* Shrink to 80% of the original size */
+            }
+        }
+
+        /* Additional styles for the chart canvas */
+        .chartContainer canvas {
+
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            width: 800px; /* Increased width */
+            height: 400px; /* Increased height */
+    
+        }
+
+        .secondary-btn {
+            margin-top: 20px;
+            background-color: #07d2cf;
+            color: rgb(0, 0, 0);
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .secondary-btn:hover {
+            background-color: #ffffff;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 14px;
+            color: #080808;
+            width: 100%;
+            padding: 10px 0;
+            background-color: #ffffff;
+            color: rgb(0, 0, 0);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Analytics Dashboard</h1>
+        <p>View crime trends, reports, and safety analytics.</p>
+    </header>
+
+    <main>
+        <!-- Crime Trends Section -->
+        <h2>Crime Trends</h2>
+        <p>Interactive charts and data visualization tools for analyzing crime patterns.</p>
+        <button onclick="showCrimeChart()" class="secondary-btn">View Crime Chart</button>
+        
+        <div id="crimeChartContainer" class="chartContainer">
+            <canvas id="crimeChart"></canvas>
+        </div>
+
+        <!-- Reports Overview Section -->
+        <h2>Reports Overview</h2>
+        <p>Summary of incidents and response statistics.</p>
+        <ul>
+            <li>Total Incidents Reported: <strong>125,000</strong></li>
+            <li>Resolved Cases: <strong>95,000</strong></li>
+            <li>Pending Cases: <strong>30,000</strong></li>
+        </ul>
+        <button onclick="showIRSensorPopup()" class="secondary-btn">View IR Sensor Data</button>
+        <button onclick="showAlcoholDetectionPopup()" class="secondary-btn">View MQ3 Alcohol Detector Data</button>
+        <script>
+            // Function to display IR Sensor data popup
+            function showIRSensorPopup() {
+                alert("IR Sensor Data: \nRoad Surface Temperature: 30°C\nObstacle Detected: Yes\nProximity Alert: 5 meters");
+            }
+        
+            // Function to display MQ3 Alcohol Detector data popup
+            function showAlcoholDetectionPopup() {
+                alert("MQ3 Alcohol Detector Data: \nDetection Level: 0.05% BAC\nStatus: Safe\nTimestamp: 2025-01-09 14:45:00");
+            }
+        </script>
+        <p>Ensure timely responses with advanced tools and allocate resources efficiently.</p>
+
+        <!-- Officer Deployment Section -->
+        <h2>Officer Deployment</h2>
+        <p>Analyze and optimize officer deployment strategies with crime rate data.</p>
+        <ul>
+            <li>Active Duty Officers: <strong>10,000</strong></li>
+            <li>Officers per District: <strong>Varies (see analytics chart)</strong></li>
+            <li>Deployment Efficiency: <strong>85%</strong></li>
+        </ul>
+        <button onclick="showDeploymentChart()" class="secondary-btn">View Deployment Chart</button>
+        
+        <div id="deploymentChartContainer" class="chartContainer">
+            <canvas id="deploymentChart"></canvas>
+        </div>
+
+        <button onclick="window.location.href='police.html'" class="secondary-btn">Back to Police Portal</button>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Axialeart. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Function to display the Crime Chart with animation
+        function showCrimeChart() {
+            const crimeChartContainer = document.getElementById('crimeChartContainer');
+            crimeChartContainer.classList.add('show'); // Add class to trigger animation
+
+            if (!window.crimeChartCreated) {
+                const ctx = document.getElementById('crimeChart').getContext('2d');
+                const crimeChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Theft', 'Assault', 'Homicide', 'Fraud', 'Cyber Crime', 'Drug Offenses'],
+                        datasets: [{
+                            label: 'Number of Cases (in thousands)',
+                            data: [30, 20, 15, 10, 25, 18],
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.4)',  
+                                'rgba(54, 162, 235, 0.4)',  
+                                'rgba(255, 206, 86, 0.4)',  
+                                'rgba(75, 192, 192, 0.4)',  
+                                'rgba(153, 102, 255, 0.4)', 
+                                'rgba(255, 159, 64, 0.4)' 
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                            },
+                            title: {
+                                display: true,
+                                text: 'Crime Trends in India (2024)'
+                            }
+                        }
+                    }
+                });
+                window.crimeChartCreated = true;
+            }
+        }
+
+        // Function to display the Deployment Chart with animation
+        function showDeploymentChart() {
+            const deploymentChartContainer = document.getElementById('deploymentChartContainer');
+            deploymentChartContainer.classList.add('show'); // Add class to trigger animation
+
+            if (!window.deploymentChartCreated) {
+                const ctx = document.getElementById('deploymentChart').getContext('2d');
+                const deploymentChart = new Chart(ctx, {
+                    type: 'doughnut', // Doughnut chart for circular representation
+                    data: {
+                        labels: [
+                            'Uttar Pradesh (Crime Rate: 12.5%)',
+                            'Maharashtra (Crime Rate: 10.2%)',
+                            'Bihar (Crime Rate: 11.0%)',
+                            'West Bengal (Crime Rate: 9.8%)',
+                            'Rajasthan (Crime Rate: 10.5%)'
+                        ], // Top 5 states with crime rates
+                        datasets: [{
+                            label: 'Number of Officers',
+                            data: [12000, 15000, 10000, 9000, 11000], // Example officer numbers
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.5)',
+                                'rgba(54, 162, 235, 0.5)',
+                                'rgba(255, 206, 86, 0.5)',
+                                'rgba(75, 192, 192, 0.5)',
+                                'rgba(153, 102, 255, 0.5)'
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                            },
+                            title: {
+                                display: true,
+                                text: 'Officer Deployment and Crime Rates in Top 5 States'
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function (context) {
+                                        const label = context.label || '';
+                                        const value = context.raw || 0;
+                                        const crimeRates = [12.5, 10.2, 11.0, 9.8, 10.5]; // Example crime rates
+                                        const stateIndex = context.dataIndex;
+                                        return `${label}: ${value} Officers, Crime Rate: ${crimeRates[stateIndex]}%`;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+                window.deploymentChartCreated = true;
+            }
+        }
+    </script>
+</body>
+</html>

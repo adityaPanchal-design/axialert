@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Started - AccidentAlert</title>
+    <link rel="stylesheet" href="new_style.css">
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #0ec0fb;
+        color: #000000;
+    }
+
+    header {
+        background-color:transparent;
+        padding: 20px;
+        text-align: center;
+    }
+
+    header h1 {
+        margin: 0;
+        font-size: 2rem;
+    }
+
+    header p {
+        font-size: 1rem;
+        margin-top: 5px;
+    }
+
+    main {
+        text-align: center;
+        padding: 20px;
+    }
+
+    h2 {
+        color: #ffffff;
+        margin-bottom: 10px;
+    }
+
+    section {
+        margin: 30px 0;
+    }
+
+    .team-section {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+        margin-top: 30px;
+    }
+    .back-home {
+        display: inline-block;
+        margin-top: 30px;
+        padding: 10px 20px;
+        background-color: #ffffff;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+    }
+
+    .back-home:hover {
+        background-color: #ffffff;
+    }
+
+    footer {
+        background-color: transparent;
+        text-align: center;
+        padding: 10px;
+        margin-top: 5px;
+    }
+
+    footer p {
+        margin: 0;
+        color: #fff;
+        margin-bottom: 0%;
+        margin-top: 15%;
+    }
+</style>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">AccidentAlert</div>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="about_us.html">About Us</a>
+                <a href="learn_more.html">Learn More</a>
+                <a href="get_started.html">Get Started</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <h1>Get Started with AccidentAlert</h1>
+        <p>Follow these simple steps to begin using our service:</p>
+        <ol>
+            <li><strong>Sign Up:</strong> Create your account in just a few minutes.</li>
+            <li><strong>Setup:</strong> Follow our easy installation guide to set up your devices.</li>
+            <li><strong>Go Live:</strong> Start monitoring your community and receive real-time alerts.</li>
+        </ol>
+        <button class="login-btn" onclick="document.getElementById('loginSignupModal').style.display='flex'">Begin Registration</button>
+    </main>
+
+    <footer>
+        <p>© 2025 AccidentAlert. All rights reserved.</p>
+    </footer>
+    <!-- Login/Signup Selection Modal -->
+    <div id="loginSignupModal" class="modal" action="login.php" method="post">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Select User Type</h2>
+            <button id="policeLoginBtn">Police</button>
+            <button id="commonLoginBtn">Common Person</button>
+        </div>
+    </div>
+    
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal"action="signup.php" method="POST">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Login</h2>
+            <form id="loginForm">
+                <input type="text" id="username" placeholder="Username" required>
+                <input type="password" id="password" placeholder="Password" required>
+                <button type="submit">Login</button>
+            </form>
+            <div class="social-login">
+                <button id="googleSignUpBtn"><img src="gogle.png" alt="Google Sign Up"></button>
+                <button id="facebookSignUpBtn"><img src="facebook.webp" alt="Facebook Sign Up"></button>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Modal Logic for Login/Signup Selection
+        const loginSignupModal = document.getElementById('loginSignupModal');
+        const closeLoginSignupModal = loginSignupModal.querySelector('.close');
+        const policeLoginBtn = document.getElementById('policeLoginBtn');
+        const commonLoginBtn = document.getElementById('commonLoginBtn');
+
+        closeLoginSignupModal.addEventListener('click', () => {
+            loginSignupModal.style.display = 'none';
+        });
+
+        policeLoginBtn.addEventListener('click', () => {
+            loginSignupModal.style.display = 'none';
+            document.getElementById('loginModal').style.display = 'flex';
+            document.getElementById('loginForm').dataset.userType = 'police';
+        });
+
+        commonLoginBtn.addEventListener('click', () => {
+            loginSignupModal.style.display = 'none';
+            document.getElementById('signupModal').style.display = 'flex';
+            document.getElementById('signupForm').dataset.userType = 'common';
+        });
+
+        // Modal Logic for Login
+        const loginModal = document.getElementById('loginModal');
+        const closeLoginModal = loginModal.querySelector('.close');
+
+        closeLoginModal.addEventListener('click', () => {
+            loginModal.style.display = 'none';
+        });
+
+        // Modal Logic for Signup
+        const signupModal = document.getElementById('signupModal');
+        const closeSignupModal = signupModal.querySelector('.close');
+
+        closeSignupModal.addEventListener('click', () => {
+            signupModal.style.display = 'none';
+        });
+
+        // Close Modals on Outside Click
+        window.addEventListener('click', (event) => {
+            if (event.target === loginSignupModal) {
+                loginSignupModal.style.display = 'none';
+            }
+            if (event.target === loginModal) {
+                loginModal.style.display = 'none';
+            }
+            if (event.target === signupModal) {
+                signupModal.style.display = 'none';
+            }
+        });
+
+        // Handle Login Submission
+        document.getElementById('loginForm').addEventListener('submit', (event) => {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if (username && password) {
+                const userType = event.target.dataset.userType || 'police';
+                window.location.href = userType === 'police' ? 'police.html' : 'common.html';
+            }
+        });
+        </script>
+</body>
+</html>

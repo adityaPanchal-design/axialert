@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Alert System</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #d9534f;
+      font-size: 28px;
+    }
+
+    p {
+      font-size: 16px;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .alert-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .alert-card {
+      background-color: #fff;
+      padding: 20px;
+      border-left: 6px solid #d9534f;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+
+    .alert-card h3 {
+      margin-top: 0;
+      font-size: 20px;
+      color: #d9534f;
+    }
+
+    .alert-card p {
+      color: #555;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .wa-button {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 15px;
+      background-color: #25d366;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    .wa-button:hover {
+      background-color: #1ebe5d;
+    }
+
+    .footer {
+      margin-top: 40px;
+      font-size: 14px;
+      color: #777;
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🚨 Alert System</h1>
+  <p>This section enables real-time alerts to be sent to the community about emergencies, safety concerns, and important updates.</p>
+
+  <div class="alert-container">
+
+    <div class="alert-card">
+      <h3>🔥 Fire Alert</h3>
+      <p>Fire reported near Gunjan Industrial Area. Firefighters are on the scene. Avoid the area until further notice.</p>
+      <a href="https://wa.me/919336896144?text=🔥%20Fire%20Alert:%20Fire%20reported%20near%20Gunjan%20Industrial%20Area.%20Avoid%20the%20area." target="_blank" class="wa-button">Send via WhatsApp</a>
+    </div>
+
+    <div class="alert-card">
+      <h3>🚗 Road Accident</h3>
+      <p>Major accident on NH-48 Vapi. Traffic is heavily delayed. Emergency services are responding.</p>
+      <a href="https://wa.me/919336896144?text=🚗%20Road%20Accident:%20Major%20accident%20on%20NH-48%20Vapi.%20Avoid%20the%20route." target="_blank" class="wa-button">Send via WhatsApp</a>
+    </div>
+
+    <div class="alert-card">
+      <h3>🌊 Flood Warning</h3>
+      <p>Flood warning issued for Umargam coastal region. Residents are advised to stay alert and follow evacuation guidelines.</p>
+      <a href="https://wa.me/919336896144?text=🌊%20Flood%20Warning:%20Stay%20alert%20in%20Umargam.%20Follow%20evacuation%20guidelines." target="_blank" class="wa-button">Send via WhatsApp</a>
+    </div>
+
+    <div class="alert-card">
+      <h3>🛑 Safety Advisory</h3>
+      <p>Due to dense fog, visibility is low in Valsad. Please drive slowly and turn on headlights.</p>
+      <a href="https://wa.me/919336896144?text=🛑%20Safety%20Advisory:%20Dense%20fog%20in%20Valsad.%20Drive%20carefully%20with%20headlights%20on." target="_blank" class="wa-button">Send via WhatsApp</a>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    © 2025 Axialeart | Stay Informed. Stay Safe.
+  </div>
+
+</body>
+</html>

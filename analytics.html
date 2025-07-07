@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Analytics Dashboard</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                background-color: #f0f4f8;
+                color: #333;
+                text-align: center;
+                padding: 20px;
+            }
+            header {
+                background-color: #0ec0fb;
+                padding: 20px;
+                color: #000;
+                margin-bottom: 20px;
+            }
+            h1 {
+                margin: 0;
+            }
+            main {
+                max-width: 900px;
+                margin: 0 auto;
+                background: white;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+                text-align: left;
+            }
+            section {
+                margin-bottom: 30px;
+            }
+            h2 {
+                color: #111827;
+                font-size: 1.5rem;
+                margin-bottom: 10px;
+            }
+            p {
+                font-size: 1rem;
+                line-height: 1.5;
+            }
+            footer {
+                margin-top: 40px;
+                padding: 20px;
+                background-color: #0ec0fb;
+                color: #000;
+                text-align: center;
+            }
+            footer a {
+                color: #000;
+                text-decoration: none;
+                font-weight: 600;
+            }
+            footer a:hover,
+            footer a:focus {
+                text-decoration: underline;
+                outline: none;
+            }
+        </style>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Analytics Dashboard</h1>
+        <p>Insights into crime trends, response metrics, and safety data.</p>
+    </header>
+    <main>
+        <section>
+            <h2>Crime Trends</h2>
+            <canvas id="crimeTrendsChart" width="400" height="200"></canvas>
+            <p>Detailed reports on crime patterns over time to support strategic planning.</p>
+        </section>
+        <section>
+            <h2>Response Metrics</h2>
+            <canvas id="responseMetricsChart" width="400" height="200"></canvas>
+            <p>Analysis of response times to improve operational efficiency.</p>
+        </section>
+        <section>
+            <h2>Safety Data</h2>
+            <canvas id="safetyDataChart" width="400" height="200"></canvas>
+            <p>Review of safety-related data and actionable insights for community protection.</p>
+        </section>
+        <section class="resource-section" aria-labelledby="resource-header">
+            <div class="resource-container">
+                <h2 id="resource-header" class="resource-header">Resource Allocation (2025)</h2>
+                <div class="resource-flex">
+                    <div class="resource-left">
+                        <div class="resource-card" tabindex="0">
+                            <h3>Patrol Distribution</h3>
+                            <ul class="resource-list">
+                                <li><span>854</span> - Patrol Vehicles</li>
+                                <li><span>1,034</span> - Officers On Ground</li>
+                                <li><span>122</span> - Surveillance Drones</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="resource-right">
+                        <div class="resource-card" tabindex="0" aria-label="Resource Allocation Visualization">
+                            <canvas id="resourceAllocationChart" width="400" height="200"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="resource-stats" aria-label="Resource statistics summary">
+                    <div class="stat-card" tabindex="0">
+                        <p>854</p>
+                        <p>Patrol Vehicles</p>
+                    </div>
+                    <div class="stat-card" tabindex="0">
+                        <p>1,034</p>
+                        <p>Officers On Ground</p>
+                    </div>
+                    <div class="stat-card" tabindex="0">
+                        <p>122</p>
+                        <p>Surveillance Drones</p>
+                    </div>
+                    <div class="stat-card" tabindex="0">
+                        <p>456</p>
+                        <p>Emergency Response Units</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    <footer>
+        <p>&copy; 2024 Axialear. All Rights Reserved.</p>
+        <p><a href="police.html">Back to Police Portal</a></p>
+    </footer>
+    <script>
+        const ctxCrime = document.getElementById('crimeTrendsChart').getContext('2d');
+        const crimeTrendsChart = new Chart(ctxCrime, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                datasets: [{
+                    label: 'Crime Incidents',
+                    data: [120, 150, 130, 170, 160, 180, 190, 200, 210, 220, 230, 240],
+                    borderColor: 'rgba(14, 192, 251, 1)',
+                    backgroundColor: 'rgba(14, 192, 251, 0.2)',
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        const ctxResponse = document.getElementById('responseMetricsChart').getContext('2d');
+        const responseMetricsChart = new Chart(ctxResponse, {
+            type: 'bar',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                datasets: [{
+                    label: 'Average Response Time (mins)',
+                    data: [8, 7.5, 7, 6.5, 6, 5.5],
+                    backgroundColor: 'rgba(0, 123, 255, 0.7)'
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        const ctxSafety = document.getElementById('safetyDataChart').getContext('2d');
+        const safetyDataChart = new Chart(ctxSafety, {
+            type: 'pie',
+            data: {
+                labels: ['Safe', 'Moderate', 'High Risk'],
+                datasets: [{
+                    label: 'Safety Levels',
+                    data: [60, 25, 15],
+                    backgroundColor: [
+                        'rgba(40, 167, 69, 0.7)',
+                        'rgba(255, 193, 7, 0.7)',
+                        'rgba(220, 53, 69, 0.7)'
+                    ]
+                }]
+            },
+            options: {
+                responsive: true
+            }
+        });
+
+        const ctxResource = document.getElementById('resourceAllocationChart').getContext('2d');
+        const resourceAllocationChart = new Chart(ctxResource, {
+            type: 'bar',
+            data: {
+                labels: ['Patrol Vehicles', 'Officers On Ground', 'Surveillance Drones'],
+                datasets: [{
+                    label: 'Resource Count',
+                    data: [854, 1034, 122],
+                    backgroundColor: [
+                        'rgba(0, 123, 255, 0.7)',
+                        'rgba(40, 167, 69, 0.7)',
+                        'rgba(255, 193, 7, 0.7)'
+                    ]
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

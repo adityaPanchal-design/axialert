@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Resources</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff; /* Dark background */
+            color: #000000; /* Light text */
+            transition: background-color 0.1s ease, color 0.1s ease;
+        }
+
+        header {
+            background-color: #ffffff; /* Darker header for contrast */
+            color: #000000; /* Red accent for urgency */
+            text-align: center;
+            padding: 30px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 36px;
+        }
+
+        header p {
+            font-size: 18px;
+        }
+
+        main {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            color: #000000; /* Red for headings to indicate emergency */
+            font-size: 28px;
+            border-bottom: 3px solid #ff6347;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            animation: bounceIn 2s ease-in-out;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+            line-height: 1.8;
+        }
+
+        ul li {
+            background-color: #ffffff; /* Dark list item background */
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            font-size: 16px;
+            transition: transform 0.3s ease;
+        }
+
+        ul li:hover {
+            transform: scale(1.05); /* Hover effect for list items */
+        }
+
+        ul li strong {
+            color: #000000; /* Red for important text */
+        }
+
+        a {
+            color: #050505; /* Red for links */
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #000000; /* Dark footer */
+            color: #ff6347; /* Red for footer text */
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        .resource-section {
+            margin-bottom: 40px;
+        }
+
+        .resource-section h2 {
+            margin-top: 0;
+        }
+
+        /* Keyframe Animations */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideIn {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes bounceIn {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Community Resources</h1>
+        <p>Stay prepared and informed with critical safety and emergency resources.</p>
+    </header>
+
+    <main>
+        <!-- Public Safety Tips Section -->
+        <section class="resource-section">
+            <h2>Public Safety Tips</h2>
+            <p>Be proactive about your safety with these essential tips to protect yourself and your community.</p>
+            <ul>
+                <li><strong>Always Stay Aware:</strong> Keep your phone and distractions away when walking alone in unfamiliar areas.</li>
+                <li><strong>Emergency Kit:</strong> Maintain an emergency kit with food, water, and first aid supplies in case of an unexpected event.</li>
+                <li><strong>Secure Your Home:</strong> Install security cameras, motion detectors, and ensure all doors and windows are locked.</li>
+                <li><strong>Know Local Emergency Numbers:</strong> Have essential emergency contact numbers saved in your phone and easily accessible.</li>
+                <li><strong>Stay in Well-Lit Areas:</strong> When walking at night, always stay in well-lit areas to ensure your safety.</li>
+                <li><strong>Trust Your Instincts:</strong> If something doesn’t feel right, move away from the situation and report it.</li>
+            </ul>
+        </section>
+
+        <!-- Emergency Contacts Section -->
+        <section class="resource-section">
+            <h2>Emergency Contacts</h2>
+            <p>Know who to call in case of an emergency, and make sure your family and friends do too.</p>
+            <ul>
+                <li><strong>Police:</strong> 100</li>
+                <li><strong>Fire Department:</strong> 101</li>
+                <li><strong>Ambulance:</strong> 102</li>
+                <li><strong>Women’s Helpline:</strong> 1091</li>
+                <li><strong>Child Helpline:</strong> 1098</li>
+                <li><strong>Disaster Management:</strong> 1078</li>
+                <li><strong>Cyber Crime:</strong> 155260</li>
+                <li><strong>Domestic Violence Helpline:</strong> 181</li>
+            </ul>
+        </section>
+
+        <!-- Neighborhood Watch Section -->
+        <section class="resource-section">
+            <h2>Neighborhood Watch</h2>
+            <p>Start or join a neighborhood watch program to keep your community safe.</p>
+            <ul>
+                <li><strong>Collaborate with Local Police:</strong> Work together with your local law enforcement to create an effective neighborhood watch.</li>
+                <li><strong>Stay Informed:</strong> Keep up with local news and updates regarding criminal activity in your area.</li>
+                <li><strong>Report Suspicious Activity:</strong> Don’t hesitate to contact the authorities if you notice anything unusual.</li>
+                <li><strong>Promote Awareness:</strong> Share safety tips with your neighbors and encourage them to participate in keeping the area secure.</li>
+                <li><strong>Neighborhood Safety Events:</strong> Organize local events to increase safety awareness and build stronger community relationships.</li>
+            </ul>
+        </section>
+    </main>
+    <button onclick="window.location.href='common.html'" class="secondary-btn" style="margin-left: 45%;">Back to Common Portal</button>
+    <footer>
+        <p>&copy; 2024 Axialeart. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

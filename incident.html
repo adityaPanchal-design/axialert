@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Incident Management – Valsad District</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f7f7f7;
+    }
+
+    h1 {
+      color: #007BFF;
+      font-size: 28px;
+    }
+
+    p {
+      font-size: 16px;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .incident-table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+
+    .incident-table th, .incident-table td {
+      padding: 12px;
+      border: 1px solid #ddd;
+      text-align: left;
+    }
+
+    .incident-table th {
+      background-color: #007BFF;
+      color: white;
+    }
+
+    .incident-table td.status {
+      font-weight: bold;
+    }
+
+    .status-pending {
+      color: red;
+    }
+
+    .status-progress {
+      color: orange;
+    }
+
+    .status-resolved {
+      color: green;
+    }
+
+    .btn {
+      padding: 6px 12px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    .btn:hover {
+      background-color: #0056b3;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 14px;
+      color: #777;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>📍 Incident Management – Valsad District</h1>
+  <p>This section allows users to view and manage reported incidents in real-time.</p>
+
+  <table class="incident-table">
+    <thead>
+      <tr>
+        <th>Incident ID</th>
+        <th>Type</th>
+        <th>Location</th>
+        <th>Assigned Officer</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>#INC00123</td>
+        <td>Road Accident</td>
+        <td>NH-48, Vapi</td>
+        <td>ASI R. Sharma</td>
+        <td class="status status-resolved">Resolved</td>
+        <td><button class="btn">View</button></td>
+      </tr>
+      <tr>
+        <td>#INC00124</td>
+        <td>Fire Alert</td>
+        <td>Gunjan Industrial Zone</td>
+        <td>SI J. Patel</td>
+        <td class="status status-progress">In Progress</td>
+        <td><button class="btn">View</button></td>
+      </tr>
+      <tr>
+        <td>#INC00125</td>
+        <td>Flood Warning</td>
+        <td>Umargam Coast</td>
+        <td>SI Mehta</td>
+        <td class="status status-pending">Pending</td>
+        <td><button class="btn">Update</button></td>
+      </tr>
+      <tr>
+        <td>#INC00126</td>
+        <td>Safety Alert</td>
+        <td>Valsad Highway Curve</td>
+        <td>Traffic Control A</td>
+        <td class="status status-resolved">Resolved</td>
+        <td><button class="btn">View</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="footer">
+    © 2025 Axialeart | Real-time Incident Tracking – Valsad
+  </div>
+
+</body>
+</html>
